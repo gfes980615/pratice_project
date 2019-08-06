@@ -14,8 +14,8 @@ try:
 except EOFError:
     pass
 
-env = ['dev','prod','uat']
-brand = ['lv','ls','cdd','hy']
+env = ['dev']
+brand = ['3h','lv','ls','cdd','hy','bh','c7','c8','co','dm','qm','sc','tz','xpj']
 apath=os.path.abspath('.')
 
 for e in env:
@@ -23,8 +23,8 @@ for e in env:
         path = '\\'+e+'\\'+b
         if not os.path.isdir(apath+path):
             os.makedirs(apath+path)
-        with open(apath+path+'\\'+'app.conf','w+') as f :
-            f.write('\n')
+        with open(apath+path+'\\'+'app.conf','a') as f :
+            f.write('\n\n')
             f.write('[' + title + ']' + '\n')
             for index in range(len(parameter)):
                 f.write(parameter[index] + '=' + value[index] + '\n')
