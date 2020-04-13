@@ -6,7 +6,7 @@ print('\n\n\t\t新增conf檔參數工具\n\n')
 title = input('Enter titile=')
 parameter = []
 value = []
-count = 0
+
 try:
     while True:
         parameter.append(input('Enter parameter:'))
@@ -30,3 +30,4 @@ for e in env:
                 f.write(parameter[index] + '=' + value[index] + '\n')
 
 input('新增完畢 按任意鍵結束程式...')
+
