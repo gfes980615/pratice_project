@@ -33,7 +33,7 @@ for word in words:
     wordlist = word.select("li")
 
 db = MySQLdb.connect(host=db_host,
-                     user=db_user, passwd=db_pass, db=db_name, charset="utf8")
+                     user=db_user, passwd=db_pass, db=db_name,port=3307, charset="utf8")
 cursor = db.cursor()
 table_name = level + '_words'
 cursor.execute("select COUNT(*) as count from INFORMATION_SCHEMA.TABLES where TABLE_NAME='"+table_name+"';")

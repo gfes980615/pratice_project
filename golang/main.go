@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 	"regexp"
-	"strings"
+	// "strings"
 )
 
 var (
@@ -16,21 +16,21 @@ var (
 	Brand      = []string{"lv", "ls", "c7"}
 )
 
-func main() {
-	var option string
-	var itemTitle string
-	var items string
-	fmt.Println("請選擇操作方式: \n1.新增 \n2.刪除")
-	fmt.Scanln(&option)
-	fmt.Println("請輸入要新增/刪除的title: ")
-	fmt.Scanln(&itemTitle)
-	fmt.Println("請輸入設定: (多項時用逗號隔開)")
-	fmt.Scanln(&items)
+// func main() {
+// 	var option string
+// 	var itemTitle string
+// 	var items string
+// 	fmt.Println("請選擇操作方式: \n1.新增 \n2.刪除")
+// 	fmt.Scanln(&option)
+// 	fmt.Println("請輸入要新增/刪除的title: ")
+// 	fmt.Scanln(&itemTitle)
+// 	fmt.Println("請輸入設定: (多項時用逗號隔開)")
+// 	fmt.Scanln(&items)
 
-	Items := strings.Split(items, ",")
-	refresh_conf_func(itemTitle, Items, option)
+// 	Items := strings.Split(items, ",")
+// 	refresh_conf_func(itemTitle, Items, option)
 
-}
+// }
 
 func setTitleMap(title string) {
 	if _, exist := TitleMap[title]; !exist {
