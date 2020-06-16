@@ -4,6 +4,19 @@ import MySQLdb
 from bs4 import BeautifulSoup
 import rate_tool.rate_tool as tool
 
+class ExchangeRate:
+    country = ""           #國家
+    cashRateBuy = 0         #現金買入
+    cashRateSell = 0        #現金賣出
+    realtimeRateBuy = 0     #即期買入
+    realtimeRateSell = 0    #即期賣出
+    def __init__(self, country="", cashRateBuy=0, cashRateSell=0, realtimeRateBuy=0, realtimeRateSell=0):
+        self.country = country
+        self.cashRateBuy = cashRateBuy
+        self.cashRateSell = cashRateSell
+        self.realtimeRateBuy = realtimeRateBuy
+        self.realtimeRateSell = realtimeRateSell
+
 comma = ","
 jump = "\n"
 single = "'"
@@ -29,7 +42,6 @@ RealtimeRates = soup.select(
     "td.rate-content-sight.text-right.print_hide")  #取得即期匯率
 
 cashRateBuy, cashRateSell = tool.GetRateResult(CashRates)
-countRate = 0
 
 realtimeRateBuy, realtimeRateSell = tool.GetRateResult(RealtimeRates)
 
@@ -41,3 +53,12 @@ for i in range(len(countrys)):
     print(countrys[i] + blank + cashRateBuy[i] + blank +
           cashRateSell[i] + blank + realtimeRateBuy[i] + blank +
           realtimeRateSell[i])
+
+rate_list = []
+for i in range(len(countrys)):
+    rate_obj = ExchangeRate(countrys[i],cashRateBuy[i],cashRateSell[i],realtimeRateBuy[i],realtimeRateSell[i])
+    rate_list.append(rate_obj)
+
+for i in range(len(rate_list)):
+    print(rate_list[i].country)
+
