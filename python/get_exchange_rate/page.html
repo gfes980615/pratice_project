@@ -1,0 +1,94 @@
+﻿$(function () {
+	if(!isMobile.any){
+		var mMSDomain = 'https://tw.beanfun.com/MapleStory/';
+		var mainmenuHTML = '\
+			<div class="mMainmenu-positioner">\
+				<div class="mMainmenu">\
+					<div class="mMainmenu-wrap">\
+						<div class="gnnnnn">\
+							<div class="mMenumenu-cate">\
+								<a class="mMenumenu-cate-link mmBulletin" href="'+mMSDomain+'main?section=mBulletin">最新消息</a>\
+								<div class="mMenumenu-sub">\
+									<a class="mMenumenu-sub-link mmAll" href="'+mMSDomain+'main?section=mBulletin&cate=all">全部</a>\
+									<a class="mMenumenu-sub-link mmEvent" href="'+mMSDomain+'main?section=mBulletin&cate=event">活動</a>\
+									<a class="mMenumenu-sub-link mmUpdate" href="'+mMSDomain+'main?section=mBulletin&cate=update">更新</a>\
+									<a class="mMenumenu-sub-link mmImportant" href="'+mMSDomain+'main?section=mBulletin&cate=important">重要</a>\
+								</div>\
+								<a class="mMenumenu-outer-link" href="mailto:maplestoryevent@gamania.com">合作聯繫</a>\
+							</div>\
+							<div class="mMenumenu-cate">\
+								<a class="mMenumenu-cate-link mmMedia" href="'+mMSDomain+'main?section=mRoles">楓葉圖書</a>\
+								<div class="mMenumenu-sub">\
+									<a class="mMenumenu-sub-link mmRoles" href="'+mMSDomain+'main?section=mRoles">職業介紹</a>\
+									<a class="mMenumenu-sub-link mmSys" href="'+mMSDomain+'main?section=mSys">系統介紹</a>\
+									<a class="mMenumenu-sub-link mmArt" href="'+mMSDomain+'main?section=mMedia">多媒體園地</a>\
+								</div>\
+							</div>\
+							<div class="mMenumenu-cate">\
+								<a class="mMenumenu-cate-link mmDownload" href="'+mMSDomain+'download">下載專區</a>\
+								<div class="mMenumenu-sub">\
+									<a class="mMenumenu-sub-link mmCore" href="'+mMSDomain+'download">遊戲主程式</a>\
+									<a class="mMenumenu-sub-link mmDownloadUpdate" href="'+mMSDomain+'download?download_type=2">遊戲更新檔案</a>\
+									<a class="mMenumenu-sub-link mmIns" href="'+mMSDomain+'download?ins=install">完整安裝說明</a>\
+									<a class="mMenumenu-sub-link mmManual" href="'+mMSDomain+'download?ins=update">手動更新說明</a>\
+									<a class="mMenumenu-sub-link mmRequire" href="'+mMSDomain+'download?ins=require">遊戲配備需求</a>\
+								</div>\
+							</div>\
+							<div class="mMenumenu-cate">\
+								<a class="mMenumenu-cate-link" style="pointer-events:none;" href="javascript:;">楓葉會員</a>\
+								<div class="mMenumenu-sub">\
+									<a class="mMenumenu-sub-link" target="_blank" href="https://event.beanfun.com/MapleStory/SetSecondPw/SetPwPage01.aspx">修改第二組密碼</a>\
+									<a class="mMenumenu-sub-link" target="_blank" href="https://tw.beanfun.com/customerservice/www/main.aspx">客服中心</a>\
+									<a class="mMenumenu-sub-link" target="_blank" href="https://event.beanfun.com/customerservice/PluginReporting/PluginBoard/PluginBoardJQ.aspx">外掛檢舉專區</a>\
+									<a class="mMenumenu-sub-link" target="_blank" href="https://event.beanfun.com/maplestory/ItemToGame/Item_List.aspx">道具兌換專區</a>\
+									<a class="mMenumenu-sub-link" target="_blank" href="https://bfweb.beanfun.com/Register/register">遊戲帳號申請</a>\
+									<a class="mMenumenu-sub-link" href="'+mMSDomain+'sn_query">序號查詢</a>\
+									<a class="mMenumenu-sub-link" href="'+mMSDomain+'policy">遊戲規章</a>\
+									<a class="mMenumenu-sub-link" href="'+mMSDomain+'blacklist">處罰名單</a>\
+								</div>\
+							</div>\
+							<div class="mMenumenu-cate">\
+								<a class="mMenumenu-cate-link" href="http://hk.beanfun.com/maplestory">香港專區</a>\
+							</div class="mMenumenu-sub">\
+						</div>\
+					</div>\
+				</div>\
+			</div>';
+		$('script[src*="m-mainmenu.js"]').wrap('<div class="mainmenu-wrap" style="height:120px;"></div>');
+		$('script[src*="m-mainmenu.js"]').after('<link href="https://tw.hicdn.beanfun.com/beanfun/GamaWWW/MapleStory/official/2020/style/m-mainmenu.css" rel="stylesheet">'+mainmenuHTML);
+
+		$('.mMenumenu-cate-link').click(function(){
+			$('.mMenumenu-cate-link').removeClass('mMenumenu-cate-link-active');
+			$(this).addClass('mMenumenu-cate-link-active');
+		});
+
+		$('.mMenumenu-sub-link').click(function(){
+			var thisParentLink = $(this).parent().prev();
+			if(!thisParentLink.is('.mMenumenu-cate-link-active')){
+				$('.mMenumenu-cate-link').removeClass('mMenumenu-cate-link-active');
+				thisParentLink.addClass('mMenumenu-cate-link-active');
+			}
+		});
+	}
+
+	if($('#topBar').length){
+		$(window).on('scroll', function(){
+			if($(window).scrollTop() > $('#topBar').height()){
+				$('.mMainmenu').addClass('mMainmenu-fixed');
+			}else{
+				$('.mMainmenu').removeClass('mMainmenu-fixed');
+			}
+		});
+	}else if(location.pathname.indexOf('main') != -1){
+		$(window).on('scroll', function(){
+			var mKvHeight = $('.mKv').height();
+			if($(window).scrollTop() > mKvHeight){
+				$('.mMainmenu').addClass('mMainmenu-fixed');
+			}else{
+				$('.mMainmenu').removeClass('mMainmenu-fixed');
+			}
+		});
+	}else{
+		$('.mMainmenu').removeClass('mMainmenu-fixed');
+	}
+});
