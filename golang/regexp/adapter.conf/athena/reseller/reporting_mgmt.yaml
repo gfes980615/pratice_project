@@ -1,0 +1,36 @@
+servive: athena
+api_level: agent
+apis:
+    # 下注分析
+  - path: /v1/reseller/reports/betanalysis
+    redirect: /v1/athena/reseller/reports/betanalysis
+    method: Get
+  - path: /v1/reseller/reports/betanalysisdetail
+    redirect: /v1/athena/reseller/reports/betanalysisdetail
+    method: Get
+    # 會員折扣分析
+  - path: /v1/reseller/reports/memberdiscountanalysis
+    redirect: /v1/athena/reseller/reports/memberdiscountanalysis
+    method: Get
+    # 頻道報表
+  - path: /v1/reseller/reports/order/categories
+    redirect: /v1/athena/reseller/reports/order/categories
+    method: Get
+  - path: /v1/reseller/reports/order/types
+    redirect: /v1/athena/reseller/reports/order/types
+    method: Get
+  - path: /v1/reseller/reports/order/members
+    redirect: /v1/athena/reseller/reports/order/members
+    method: Get
+    # 輸贏監控
+  - path: /v1/reseller/reports/winlost
+    redirect: /v1/athena/reseller/reports/winlost
+    method: Get
+    # 會員收入
+  - path: /v1/reseller/reports/revenue
+    redirect: /v1/athena/reseller/reports/revenue
+    method: Get
+    # 現金流水
+  - path: /reseller/transaction
+    redirect: /athena/reseller/transaction
+    method: Get

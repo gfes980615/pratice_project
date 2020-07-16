@@ -1,0 +1,28 @@
+servive: athena
+api_level: member
+apis:
+    # 投注紀錄
+  - path: /v1/my/order/{wallet_code}
+    redirect: /v1/athena/my/order/{wallet_code}
+    method: Get
+  - path: /v1/my/order/{wallet_code}/{channel_code}
+    redirect: /v1/athena/my/order/{wallet_code}/{channel_code}
+    method: Get
+    # 交易流水
+  - path: /v1/my/transaction
+    redirect: /v1/athena/my/transaction
+    method: Get
+    # 入款紀錄
+  - path: /v1/recharge/record/
+    redirect: /v1/athena/member/recharge/record
+    method: Get
+  - path: /v1/recharge/record/{id}
+    redirect: /v1/athena/member/recharge/record/{id}
+    method: Get
+    # 出款紀錄
+  - path: /v1/withdrawal/record/
+    redirect: /v1/athena/member/withdrawal/record
+    method: Get
+  - path: /v1/withdrawal/record/{id}
+    redirect: /v1/athena/member/withdrawal/record/{id}
+    method: Get

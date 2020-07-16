@@ -1,0 +1,29 @@
+servive: athena
+api_level: user
+apis:
+  # order agg and txn agg by day
+  - path: /admin/reports/aggbyday
+    redirect: /athena/admin/reports/aggbyday
+    method: Post
+  - path: /admin/reports/aggbyday
+    redirect: /athena/admin/reports/aggbyday
+    method: Del
+  # [sync] 同步分析表ＡＰＩ analysis table
+  - path: /admin/reports/analysistable/{sync_code}/sync
+    redirect: /athena/admin/reports/analysistable/{sync_code}/sync
+    method: Post
+  - path: /admin/reports/analysistable/syncfailur
+    redirect: /athena/admin/reports/analysistable/syncfailur
+    method: Get
+  - path: /admin/reporting/financial/verify/{source}/source
+    redirect: /athena/admin/reporting/financial/verify/{source}/source
+    method: Get
+  - path: /admin/reporting/financial/verify/es
+    redirect: /athena/admin/reporting/financial/verify/es
+    method: Get
+  - path: /admin/reporting/financial/verify/analysis
+    redirect: /athena/admin/reporting/financial/verify/analysis
+    method: Get
+  - path: /admin/reporting/financial/verify
+    redirect: /athena/admin/reporting/financial/verify
+    method: Get

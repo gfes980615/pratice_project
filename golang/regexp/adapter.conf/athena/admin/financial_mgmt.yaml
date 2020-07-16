@@ -1,0 +1,174 @@
+servive: athena
+api_level: user
+apis:
+    # 現金系統-現金流水
+  - path: /admin/transaction
+    redirect: /athena/admin/transaction
+    method: Get
+  - path: /admin/transaction/daily
+    redirect: /athena/admin/transaction/daily
+    method: Get
+    # 現金系統-財務報表
+  - path: /v1/reports/financial/overview
+    redirect: /v1/athena/reports/financial/overview
+    method: Get
+    # 公司入款
+  - path: /v1/reports/financial/deposititems
+    redirect: /v1/athena/reports/financial/deposititems
+    method: Get
+  - path: /v1/reports/financial/deposititems/{account}
+    redirect: /v1/athena/reports/financial/deposititems/{account}
+    method: Get
+    # 線上支付手續費
+  - path: /v1/reports/financial/webdepositfeeitems
+    redirect: /v1/athena/reports/financial/webdepositfeeitems
+    method: Get
+  - path: /v1/reports/financial/webdepositfeeitems/{merchant_id}
+    redirect: /v1/athena/reports/financial/webdepositfeeitems/{merchant_id}
+    method: Get
+    # 人工存入
+  - path: /v1/reports/financial/manualdeposititems
+    redirect: /v1/athena/reports/financial/manualdeposititems
+    method: Get
+  - path: /v1/reports/financial/manualdeposititems/{action_code}
+    redirect: /v1/athena/reports/financial/manualdeposititems/{action_code}
+    method: Get
+    # 人工提出
+  - path: /v1/reports/financial/manualwithdrawitems
+    redirect: /v1/athena/reports/financial/manualwithdrawitems
+    method: Get
+  - path: /v1/reports/financial/manualwithdrawitems/{action_code}
+    redirect: /v1/athena/reports/financial/manualwithdrawitems/{action_code}
+    method: Get
+    # 線上支付
+  - path: /v1/reports/financial/webdeposititems
+    redirect: /v1/athena/reports/financial/webdeposititems
+    method: Get
+  - path: /v1/reports/financial/webdeposititems/{merchant_id}
+    redirect: /v1/athena/reports/financial/webdeposititems/{merchant_id}
+    method: Get
+    # 出款申請
+  - path: /v1/reports/financial/withdrawitems
+    redirect: /v1/athena/reports/financial/withdrawitems
+    method: Get
+  - path: /v1/reports/financial/withdrawitems/{group}
+    redirect: /v1/athena/reports/financial/withdrawitems/{group}
+    method: Get
+  - path: /v1/reports/financial/withdrawitems/{group}/{account}
+    redirect: /v1/athena/reports/financial/withdrawitems/{group}/{account}
+    method: Get
+    # 會員出款被扣除金額
+  - path: /v1/reports/financial/withdrawfeeitems
+    redirect: /v1/athena/reports/financial/withdrawfeeitems
+    method: Get
+  - path: /v1/reports/financial/withdrawfeeitems/{charge_type}
+    redirect: /v1/athena/reports/financial/withdrawfeeitems/{charge_type}
+    method: Get
+    # 給予優惠
+  - path: /v1/reports/financial/discountitems
+    redirect: /v1/athena/reports/financial/discountitems
+    method: Get
+  - path: /v1/reports/financial/discountitems/{deposit_type}
+    redirect: /v1/athena/reports/financial/discountitems/{deposit_type}
+    method: Get
+  - path: /v1/reports/financial/discountitems/{deposit_type}/{action_code}
+    redirect: /v1/athena/reports/financial/discountitems/{deposit_type}/{action_code}
+    method: Get
+    # 給予反水
+  - path: /v1/reports/financial/rebateitems
+    redirect: /v1/athena/reports/financial/rebateitems
+    method: Get
+  - path: /v1/reports/financial/rebateitems/{subtype_code}
+    redirect: /v1/athena/reports/financial/rebateitems/{subtype_code}
+    method: Get
+  - path: /v1/reports/financial/rebate/overview
+    redirect: /v1/athena/reports/financial/rebate/overview
+    method: Get
+  - path: /v1/reports/financial/rebate/realtime
+    redirect: /v1/athena/reports/financial/rebate/realtime
+    method: Get
+  - path: /v1/reports/financial/rebate/realtime/items
+    redirect: /v1/athena/reports/financial/rebate/realtime/items
+    method: Get
+  - path: /v1/reports/financial/rebate/ladder
+    redirect: /v1/athena/reports/financial/rebate/ladder
+    method: Get
+    # 現金系統-差額報表
+  - path: /admin/reports/diffreporting/overview
+    redirect: /athena/admin/reports/diffreporting/overview
+    method: Get
+  - path: /admin/reports/diffreporting/records
+    redirect: /athena/admin/reports/diffreporting/records
+    method: Get
+    # 入款管理-入款總覽
+  - path: /v1/admin/reports/depositoverview
+    redirect: /v1/athena/admin/reports/depositoverview
+    method: Get
+    # 入款管理-公司入款
+  - path: /admin/deposit
+    redirect: /athena/admin/deposit
+    method: Get
+  - path: /admin/deposit/{id}/image/
+    redirect: /athena/admin/deposit/{id}/image/
+    method: Get
+    # 入款管理-在線入款
+  - path: /admin/webdeposit
+    redirect: /athena/admin/webdeposit
+    method: Get
+    # 入款管理-人工存入
+  - path: /admin/mandeposit
+    redirect: /athena/admin/mandeposit
+    method: Get
+  - path: /admin/mandeposit/actioncode
+    redirect: /athena/admin/mandeposit/actioncode
+    method: Get
+  - path: /admin/mandepositaudit
+    redirect: /athena/admin/mandepositaudit
+    method: Get
+    # 入款管理-自動入帳
+  - path: /athena/admin/auto_accept
+    redirect: /athena/admin/auto_accept
+    method: Get
+    # 銀行流水
+  - path: /athena/admin/bank_list
+    redirect: /athena/admin/bank_list
+    method: Get
+  - path: /athena/admin/deposit/{deposit_id}/bank_list
+    redirect: /athena/admin/deposit/{deposit_id}/bank_list
+    method: Get
+    # 出款總覽
+  - path: /v1/admin/reports/withdrawoverview
+    redirect: /v1/athena/admin/reports/withdrawoverview
+    method: Get
+    # 出款申請
+  - path: /admin/withdraw
+    redirect: /athena/admin/withdraw
+    method: Get
+    # 在線出款
+  - path: /admin/webwithdraw
+    redirect: /athena/admin/webwithdraw
+    method: Get
+    # 人工提出
+  - path: /admin/manwithdraw
+    redirect: /athena/admin/manwithdraw
+    method: Get
+    # cmtxn
+  - path: /admin/cmtransaction
+    redirect: /athena/admin/cmtransaction
+    method: Get
+  - path: /admin/cmtransaction/latest
+    redirect: /athena/admin/cmtransaction/latest
+    method: Get
+    # cmwallet
+  - path: /admin/cmwallet
+    redirect: /athena/admin/cmwallet
+    method: Get
+  - path: /admin/cmwallet/latest
+    redirect: /athena/admin/cmwallet/latest
+    method: Get
+  - path: /admin/cmwallet/check
+    redirect: /athena/admin/cmwallet/check
+    method: Get
+  - path: /admin/cmwallet/{walletid}/check
+    redirect: /athena/admin/cmwallet/{walletid}/check
+    method: Get

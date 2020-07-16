@@ -1,0 +1,17 @@
+service: athena
+api_level: anonymous
+apis:
+  - path: /v1/statistics
+    redirect: /v1/athena/statistics
+    method: Get
+  - path: /admin/reports/analysistable/{sync_code}/dailyautosync
+    redirect: /athena/admin/reports/analysistable/{sync_code}/dailyautosync
+    method: Post
+  - path: /admin/reports/analysistable/{analysis_table}/status
+    redirect: /athena/admin/reports/analysistable/{analysis_table}/status
+    method: Get
+  - path: /admin/reports/dbescompare
+    redirect: /athena/admin/reports/dbescompare
+    method: Get
+
+  

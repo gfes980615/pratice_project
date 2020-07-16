@@ -1,0 +1,93 @@
+servive: athena
+api_level: user
+apis:
+    # 一般報表
+  - path: /v1/admin/reports/generalreport
+    redirect: /v1/athena/admin/reports/generalreport
+    method: Get
+  - path: /v1/admin/reports/generalreport/total
+    redirect: /v1/athena/admin/reports/generalreport/total
+    method: Get
+  - path: /v1/admin/reports/generalreport/{channelcode}
+    redirect: /v1/athena/admin/reports/generalreport/{channelcode}
+    method: Get
+  - path: /v1/admin/reports/generalreport/total/trend
+    redirect: /v1/athena/admin/reports/generalreport/total/trend
+    method: Get
+  - path: /v1/admin/reports/generalreport/{channelcode}/trend
+    redirect: /v1/athena/admin/reports/generalreport/{channelcode}/trend
+    method: Get
+    # 有效會員
+  - path: /v1/reports/effectivemember
+    redirect: /v1/athena/reports/effectivemember
+    method: Get
+    # 毛利分析
+  - path: /admin/reporting/orderstats
+    redirect: /athena/admin/reporting/orderstats
+    method: Get
+  - path: /admin/reporting/orderstats/member
+    redirect: /athena/admin/reporting/orderstats/member
+    method: Get
+  - path: /admin/reporting/orderstats/agent
+    redirect: /athena/admin/reporting/orderstats/agent
+    method: Get
+  - path: /admin/reporting/orderstats/product
+    redirect: /athena/admin/reporting/orderstats/product
+    method: Get
+    # 頻道報表
+  - path: /v1/reports/order/categories
+    redirect: /v1/athena/reports/order/categories
+    method: Get
+  - path: /v1/reports/order/types
+    redirect: /v1/athena/reports/order/types
+    method: Get
+  - path: /v1/reports/order/members
+    redirect: /v1/athena/reports/order/members
+    method: Get
+    # 每日報表
+  - path: /admin/reports/dailyreporting
+    redirect: /athena/admin/reports/dailyreporting
+    method: Get
+  - path: /admin/reports/dailyreporting/deposit
+    redirect: /athena/admin/reports/dailyreporting/deposit
+    method: Get
+  - path: /admin/reports/dailyreporting/withdraw
+    redirect: /athena/admin/reports/dailyreporting/withdraw
+    method: Get
+    # 水位報表
+  - path: /admin/reports/probability
+    redirect: /athena/admin/reports/probability
+    method: Get
+  - path: /admin/reports/probability/productdict
+    redirect: /athena/admin/reports/probability/productdict
+    method: Get
+  - path: /admin/reports/probability
+    redirect: /athena/admin/reports/probability
+    method: Put
+    # 彩票分析
+  - path: /admin/reports/lotteryanalysis/lottery
+    redirect: /athena/admin/reports/lotteryanalysis/lottery
+    method: Get
+  - path: /admin/reports/lotteryanalysis/lotteries/overview
+    redirect: /athena/admin/reports/lotteryanalysis/lotteries/overview
+    method: Get
+  - path: /admin/reports/lotteryanalysis/playcodes/overview
+    redirect: /athena/admin/reports/lotteryanalysis/playcodes/overview
+    method: Get
+  - path: /admin/reports/lotteryanalysis/playcode
+    redirect: /athena/admin/reports/lotteryanalysis/playcode
+    method: Get
+  - path: /admin/reports/lotteryanalysis/lotteries/available
+    redirect: /athena/admin/reports/lotteryanalysis/lotteries/available
+    method: Get
+    # 紅包－>掃雷－>自訂群
+  - path: /admin/reports/hbsl/{room_code}/memberlist
+    redirect: /athena/admin/reports/hbsl/{room_code}/memberlist
+    method: Get
+    # 管理首页->营销中心->手气红包
+  - path: /admin/reports/hbsq/{id}/stats
+    redirect: /athena/admin/reports/hbsq/{id}/stats
+    method: Get
+  - path: /admin/reports/hbsq/{id}/rulestats
+    redirect: /athena/admin/reports/hbsq/{id}/rulestats
+    method: Get

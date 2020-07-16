@@ -1,0 +1,101 @@
+servive: athena
+api_level: user
+apis:
+  - path: /v1/reports/financial/manualwithdrawitems
+    redirect: /v1/athena/reports/financial/manualwithdrawitems
+  - path: /v1/reports/financial/rebateitems
+    redirect: /v1/athena/reports/financial/rebateitems
+  - path: /admin/mandeposit/actioncode
+    redirect: /athena/admin/mandeposit/actioncode
+  - path: /admin/mandepositaudit
+    redirect: /athena/admin/mandepositaudit
+  - path: /athena/admin/auto_accept
+    redirect: /athena/admin/auto_accept
+  - path: /admin/transaction/daily
+    redirect: /athena/admin/transaction/daily
+  - path: /v1/reports/financial/deposititems/{account}
+    redirect: /v1/athena/reports/financial/deposititems/{account}
+  - path: /v1/reports/financial/manualdeposititems
+    redirect: /v1/athena/reports/financial/manualdeposititems
+  - path: /v1/reports/financial/withdrawitems/{group}/{account}
+    redirect: /v1/athena/reports/financial/withdrawitems/{group}/{account}
+  - path: /admin/withdraw
+    redirect: /athena/admin/withdraw
+  - path: /admin/cmwallet/{walletid}/check
+    redirect: /athena/admin/cmwallet/{walletid}/check
+  - path: /v1/reports/financial/withdrawitems
+    redirect: /v1/athena/reports/financial/withdrawitems
+  - path: /admin/reports/diffreporting/records
+    redirect: /athena/admin/reports/diffreporting/records
+  - path: /admin/deposit
+    redirect: /athena/admin/deposit
+  - path: /admin/cmwallet
+    redirect: /athena/admin/cmwallet
+  - path: /v1/reports/financial/discountitems/{deposit_type}/{action_code}
+    redirect: /v1/athena/reports/financial/discountitems/{deposit_type}/{action_code}
+  - path: /v1/reports/financial/rebate/realtime
+    redirect: /v1/athena/reports/financial/rebate/realtime
+  - path: /v1/admin/reports/depositoverview
+    redirect: /v1/athena/admin/reports/depositoverview
+  - path: /admin/cmtransaction
+    redirect: /athena/admin/cmtransaction
+  - path: /admin/cmwallet/check
+    redirect: /athena/admin/cmwallet/check
+  - path: /v1/reports/financial/webdepositfeeitems
+    redirect: /v1/athena/reports/financial/webdepositfeeitems
+  - path: /v1/reports/financial/manualdeposititems/{action_code}
+    redirect: /v1/athena/reports/financial/manualdeposititems/{action_code}
+  - path: /v1/reports/financial/manualwithdrawitems/{action_code}
+    redirect: /v1/athena/reports/financial/manualwithdrawitems/{action_code}
+  - path: /v1/reports/financial/rebate/overview
+    redirect: /v1/athena/reports/financial/rebate/overview
+  - path: /v1/reports/financial/rebate/realtime/items
+    redirect: /v1/athena/reports/financial/rebate/realtime/items
+  - path: /admin/cmtransaction/latest
+    redirect: /athena/admin/cmtransaction/latest
+  - path: /athena/admin/bank_list
+    redirect: /athena/admin/bank_list
+  - path: /v1/admin/reports/withdrawoverview
+    redirect: /v1/athena/admin/reports/withdrawoverview
+  - path: /v1/reports/financial/overview
+    redirect: /v1/athena/reports/financial/overview
+  - path: /v1/reports/financial/webdepositfeeitems/{merchant_id}
+    redirect: /v1/athena/reports/financial/webdepositfeeitems/{merchant_id}
+  - path: /v1/reports/financial/webdeposititems/{merchant_id}
+    redirect: /v1/athena/reports/financial/webdeposititems/{merchant_id}
+  - path: /v1/reports/financial/withdrawfeeitems/{charge_type}
+    redirect: /v1/athena/reports/financial/withdrawfeeitems/{charge_type}
+  - path: /v1/reports/financial/discountitems
+    redirect: /v1/athena/reports/financial/discountitems
+  - path: /admin/mandeposit
+    redirect: /athena/admin/mandeposit
+  - path: /admin/webwithdraw
+    redirect: /athena/admin/webwithdraw
+  - path: /v1/reports/financial/rebateitems/{subtype_code}
+    redirect: /v1/athena/reports/financial/rebateitems/{subtype_code}
+  - path: /v1/reports/financial/rebate/ladder
+    redirect: /v1/athena/reports/financial/rebate/ladder
+  - path: /admin/webdeposit
+    redirect: /athena/admin/webdeposit
+  - path: /athena/admin/deposit/{deposit_id}/bank_list
+    redirect: /athena/admin/deposit/{deposit_id}/bank_list
+  - path: /admin/manwithdraw
+    redirect: /athena/admin/manwithdraw
+  - path: /admin/reports/diffreporting/overview
+    redirect: /athena/admin/reports/diffreporting/overview
+  - path: /admin/deposit/{id}/image/
+    redirect: /athena/admin/deposit/{id}/image/
+  - path: /admin/transaction
+    redirect: /athena/admin/transaction
+  - path: /v1/reports/financial/deposititems
+    redirect: /v1/athena/reports/financial/deposititems
+  - path: /v1/reports/financial/webdeposititems
+    redirect: /v1/athena/reports/financial/webdeposititems
+  - path: /v1/reports/financial/withdrawitems/{group}
+    redirect: /v1/athena/reports/financial/withdrawitems/{group}
+  - path: /v1/reports/financial/withdrawfeeitems
+    redirect: /v1/athena/reports/financial/withdrawfeeitems
+  - path: /v1/reports/financial/discountitems/{deposit_type}
+    redirect: /v1/athena/reports/financial/discountitems/{deposit_type}
+  - path: /admin/cmwallet/latest
+    redirect: /athena/admin/cmwallet/latest

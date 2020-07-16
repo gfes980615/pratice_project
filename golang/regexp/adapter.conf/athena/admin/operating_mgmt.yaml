@@ -1,0 +1,38 @@
+servive: athena
+api_level: user
+apis:
+    # 注單中心
+  - path: /admin/order
+    redirect: /athena/admin/order
+    method: Get
+    # 派彩中心
+  - path: /admin/order/searchpayout
+    redirect: /athena/admin/order/searchpayout
+    method: Get
+    # 注單校驗
+  - path: /admin/order/validation
+    redirect: /athena/admin/order/validation
+    method: Get
+  - path: /admin/order/validation/{number}
+    redirect: /athena/admin/order/validation/{number}
+    method: Get
+    # tool
+  - path: /admin/cache/order
+    redirect: /athena/admin/cache/order
+    method: Get
+  - path: /admin/cache/searchpayout
+    redirect: /athena/admin/cache/searchpayout
+    method: Get
+    # 運營管理-即時注單
+  - path: /admin/reports/realtimeorder
+    redirect: /athena/admin/reports/realtimeorder
+    method: Get
+  - path: /admin/reports/realtimeorder/overview
+    redirect: /athena/admin/reports/realtimeorder/overview
+    method: Get
+  - path: /admin/reports/realtimeorder/lotteries/available
+    redirect: /athena/admin/reports/realtimeorder/lotteries/available
+    method: Get
+  - path: /admin/reports/realtimeorder/lotteries/overview
+    redirect: /athena/admin/reports/realtimeorder/lotteries/overview
+    method: Get

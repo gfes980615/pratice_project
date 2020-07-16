@@ -1,0 +1,279 @@
+servive: athena
+api_level: user
+apis:
+    # 風控-產品分析
+  - path: /v1/admin/risk/productanalysis/profitandloss
+    redirect: /v1/athena/admin/risk/productanalysis/profitandloss
+    method: Get
+  - path: /v1/admin/risk/productanalysis/profitandloss/chart
+    redirect: /v1/athena/admin/risk/productanalysis/profitandloss/chart
+    method: Get
+  - path: /v1/admin/risk/productanalysis/time/profitandloss
+    redirect: /v1/athena/admin/risk/productanalysis/time/profitandloss
+    method: Get
+  - path: /v1/admin/risk/productanalysis/new/profitandloss
+    redirect: /v1/athena/admin/risk/productanalysis/new/profitandloss
+    method: Get
+  - path: /v1/admin/risk/productanalysis/new/profitandloss/chart
+    redirect: /v1/athena/admin/risk/productanalysis/new/profitandloss/chart
+    method: Get
+  - path: /v1/admin/risk/productanalysis/contribution/{contribute}
+    redirect: /v1/athena/admin/risk/productanalysis/contribution/{contribute}
+    method: Get
+  - path: /v1/admin/risk/productanalysis/distribution
+    redirect: /v1/athena/admin/risk/productanalysis/distribution
+    method: Get
+  - path: /v1/admin/risk/productanalysis/filter
+    redirect: /v1/athena/admin/risk/productanalysis/filter
+    method: Get
+  - path: /v1/admin/risk/productanalysis/profit/detail
+    redirect: /v1/athena/admin/risk/productanalysis/profit/detail
+    method: Get
+    # 風控-入款分析
+  - path: /v1/admin/risk/depositanalysis/chart
+    redirect: /athena/admin/risk/deposit/chart/
+    method: Get
+  - path: /v1/admin/risk/depositanalysis/chart/group
+    redirect: /athena/admin/risk/deposit/chart/group/
+    method: Get
+  - path: /v1/admin/risk/depositanalysis/detail
+    redirect: /athena/admin/risk/deposit/detail/
+    method: Get
+  - path: /v1/admin/risk/depositanalysis/ranking
+    redirect: /athena/admin/risk/deposit/ranking/
+    method: Get
+  - path: /v1/admin/risk/depositanalysis/detail/amount
+    redirect: /athena/admin/risk/deposit/detail/amount/
+    method: Get
+  - path: /v1/admin/risk/depositanalysis/detail/amount/custom
+    redirect: /athena/admin/risk/deposit/detail/amount/custom/
+    method: Get
+  - path: /v1/admin/risk/depositanalysis/detail/amount/overview
+    redirect: /athena/admin/risk/deposit/detail/amount/overview/
+    method: Get
+  - path: /v1/admin/risk/depositanalysis/detail/transfer
+    redirect: /athena/admin/risk/deposit/detail/transfer/
+    method: Get
+  - path: /v1/admin/risk/depositanalysis/detail/merchant
+    redirect: /athena/admin/risk/deposit/detail/merchant/
+    method: Get
+  - path: /v1/admin/risk/depositanalysis/detail/bank
+    redirect: /athena/admin/risk/deposit/detail/bank/
+    method: Get
+  - path: /v1/admin/risk/deposit_and_withdraw/member_detail
+    redirect: /athena/admin/risk/deposit_and_withdraw/member_detail/
+    method: Get
+  - path: /v1/admin/risk/deposit/member_detail
+    redirect: /athena/admin/risk/deposit/member_detail/
+    method: Get
+  - path: /v1/admin/risk/deposit/member_detail/transfer_method
+    redirect: /athena/admin/risk/deposit/member_detail/transfer_method/
+    method: Get
+  - path: /v1/admin/risk/deposit/overview
+    redirect: /athena/admin/risk/deposit/overview/
+    method: Get
+    # 風控-出款分析
+  - path: /v1/admin/risk/withdrawanalysis/chart
+    redirect: /athena/admin/risk/withdraw/chart/
+    method: Get
+  - path: /v1/admin/risk/withdrawanalysis/chart/group
+    redirect: /athena/admin/risk/withdraw/chart/group/
+    method: Get
+  - path: /v1/admin/risk/withdrawanalysis/detail
+    redirect: /athena/admin/risk/withdraw/detail/
+    method: Get
+  - path: /v1/admin/risk/withdrawanalysis/ranking
+    redirect: /athena/admin/risk/withdraw/ranking/
+    method: Get
+  - path: /v1/admin/risk/withdrawanalysis/detail/amount
+    redirect: /athena/admin/risk/withdraw/detail/amount/
+    method: Get
+  - path: /v1/admin/risk/withdrawanalysis/detail/amount/custom
+    redirect: /athena/admin/risk/withdraw/detail/amount/custom/
+    method: Get
+  - path: /v1/admin/risk/withdrawanalysis/detail/amount/overview
+    redirect: /athena/admin/risk/withdraw/detail/amount/overview/
+    method: Get
+  - path: /v1/admin/risk/withdrawanalysis/detail/merchant
+    redirect: /athena/admin/risk/withdraw/detail/merchant/
+    method: Get
+  - path: /v1/admin/risk/withdraw/member_detail
+    redirect: /athena/admin/risk/withdraw/member_detail/
+    method: Get
+  - path: /v1/admin/risk/withdraw/overview
+    redirect: /athena/admin/risk/withdraw/overview/
+    method: Get
+    # 風控-會員分析
+  - path: /v1/admin/risk/memberanalysis/chart/age/
+    redirect: /athena/admin/risk/member/chart/age/
+    method: Get
+  - path: /v1/admin/risk/memberanalysis/distribution/order/
+    redirect: /athena/admin/risk/member/distribution/order/
+    method: Get
+  - path: /v1/admin/risk/memberanalysis/distribution/profit/
+    redirect: /athena/admin/risk/member/distribution/profit/
+    method: Get
+  - path: /v1/admin/risk/memberanalysis/distribution/deposit/
+    redirect: /athena/admin/risk/member/distribution/deposit/
+    method: Get
+  - path: /v1/admin/risk/memberanalysis/distribution/withdraw/
+    redirect: /athena/admin/risk/member/distribution/withdraw/
+    method: Get
+  - path: /v1/admin/risk/memberanalysis/product/
+    redirect: /athena/admin/risk/member/product/
+    method: Get
+  - path: /v1/admin/risk/memberanalysis/transaction/
+    redirect: /athena/admin/risk/member/transaction/
+    method: Get
+  - path: /v1/admin/risk/memberanalysis/chart/
+    redirect: /athena/admin/risk/member/chart/
+    method: Get
+  - path: /v1/admin/risk/memberanalysis/chart/activate/
+    redirect: /athena/admin/risk/member/chart/activate/
+    method: Get
+  - path: /v1/admin/risk/memberanalysis/detail/activate/
+    redirect: /athena/admin/risk/member/detail/activate/
+    method: Get
+  - path: /v1/admin/risk/memberanalysis/analysis/
+    redirect: /athena/admin/risk/member/analysis/
+    method: Get
+  - path: /v1/admin/risk/member_active/member_detail/
+    redirect: /athena/admin/risk/member_active/member_detail/
+    method: Get
+    # 風控-平台帳戶
+  - path: /v1/admin/risk/platformanalysis/chart/balance
+    redirect: /athena/admin/risk/platform/chart/balance/
+    method: Get
+  - path: /v1/admin/risk/platformanalysis/chart/profit
+    redirect: /athena/admin/risk/platform/chart/profit/
+    method: Get
+  - path: /v1/admin/risk/platformanalysis/detail/profit
+    redirect: /athena/admin/risk/platform/detail/profit/
+    method: Get
+  - path: /v1/admin/risk/platform_cost/member_detail
+    redirect: /athena/admin/risk/platform_cost/member_detail/
+    method: Get
+    # 風控-實時看板
+  - path: /v1/admin/risk/realtime/order
+    redirect: /athena/admin/risk/realtime/order
+    method: Get
+  - path: /v1/admin/risk/realtime/earning
+    redirect: /athena/admin/risk/realtime/earning
+    method: Get
+  - path: /v1/admin/risk/realtime/product
+    redirect: /athena/admin/risk/realtime/product
+    method: Get
+  - path: /v1/admin/risk/realtime/deposit
+    redirect: /athena/admin/risk/realtime/deposit
+    method: Get
+  - path: /v1/admin/risk/realtime/withdraw
+    redirect: /athena/admin/risk/realtime/withdraw
+    method: Get
+  - path: /v1/admin/risk/realtime/member
+    redirect: /athena/admin/risk/realtime/member/
+    method: Get
+    # 風控-告警
+  - path: /v1/admin/risk/notification/overview
+    redirect: /athena/admin/risk/notification/overview/
+    method: Get
+  - path: /v1/admin/risk/notification/{event_id}
+    redirect: /athena/admin/risk/notification/{event_id}
+    method: Get
+  - path: /v1/admin/risk/notification/detail/{event_id}
+    redirect: /athena/admin/risk/notification/detail/{event_id}
+    method: Get
+  - path: /v1/admin/risk/notification/{event_id}
+    redirect: /athena/admin/risk/notification/{event_id}
+    method: Put
+  - path: /v1/athena/admin/risk/memberanalysis/new/trace/
+    redirect: /athena/admin/risk/member/new/trace/
+    method: Get
+  - path: /v1/athena/admin/risk/memberanalysis/new/trace/detail
+    redirect: /athena/admin/risk/member/new/trace/detail
+    method: Get
+  - path: /v1/athena/admin/risk/memberanalysis/new/trace/range
+    redirect: /athena/admin/risk/member/new/trace/range
+    method: Get
+  - path: /v1/athena/admin/risk/memberanalysis/new/trace/self_range
+    redirect: /athena/admin/risk/member/new/trace/self_range
+    method: Get
+    # 營銷活動
+  - path: /v1/admin/risk/activity/members/
+    redirect: /athena/admin/risk/activity/members/
+    method: Get
+  - path: /v1/admin/risk/activity/create_group/
+    redirect: /athena/admin/risk/activity/create_group/
+    method: Post
+  - path: /v1/admin/risk/activity/group_list/
+    redirect: /athena/admin/risk/activity/group_list/
+    method: Get
+  - path: /v1/admin/risk/activity/group_member_list/
+    redirect: /athena/admin/risk/activity/group_member_list/
+    method: Get
+  - path: /v1/athena/admin/risk/activity/new_member/create_group/
+    redirect: /athena/admin/risk/activity/new_member/create_group/
+    method: Post
+  - path: /v1/athena/admin/risk/activity/new_member/count/
+    redirect: /athena/admin/risk/activity/new_member/count/
+    method: Get
+  - path: /v1/athena/admin/risk/activity/overview/{category}/create_group/
+    redirect: /athena/admin/risk/overview/{category}/chart/detail/activity/create_group
+    method: Post
+  - path: /v1/athena/admin/risk/activity/overview/{category}/member_count/
+    redirect: /athena/admin/risk/overview/{category}/chart/detail/activity/member_count
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/chart/detail/activity/create_group
+    redirect: /athena/admin/risk/{page}/{category}/chart/detail/activity/create_group
+    method: Post
+  - path: /v1/athena/admin/risk/{page}/{category}/chart/detail/activity/member_count
+    redirect: /athena/admin/risk/{page}/{category}/chart/detail/activity/member_count
+    method: Get
+    # 平台總覽
+  - path: /v1/athena/admin/risk/{page}/{category}
+    redirect: /athena/admin/risk/{page}/{category}/
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/chart/
+    redirect: /athena/admin/risk/{page}/{category}/chart/
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/chart/detail
+    redirect: /athena/admin/risk/{page}/{category}/chart/detail
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/chart/detail/activity/create_group
+    redirect: /athena/admin/risk/{page}/{category}/chart/detail/activity/create_group
+    method: Post
+  - path: /v1/athena/admin/risk/{page}/{category}/chart/detail/activity/member_count
+    redirect: /athena/admin/risk/{page}/{category}/chart/detail/activity/member_count
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/detail/
+    redirect: /athena/admin/risk/{page}/{category}/detail/
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/distribution/
+    redirect: /athena/admin/risk/{page}/{category}/distribution/
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/range/
+    redirect: /athena/admin/risk/{page}/{category}/range/
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/range/detail/
+    redirect: /athena/admin/risk/{page}/{category}/range/detail
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/self_range/
+    redirect: /athena/admin/risk/{page}/{category}/self_range/
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/distribution/{type}
+    redirect: /athena/admin/risk/{page}/{category}/distribution/{type}/
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/distribution/{type}/detail
+    redirect: /athena/admin/risk/{page}/{category}/distribution/{type}/detail
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/distribution/{type}/activity/create_group
+    redirect: /athena/admin/risk/{page}/{category}/distribution/{type}/activity/create_group
+    method: Post
+  - path: /v1/athena/admin/risk/{page}/{category}/distribution/{type}/activity/member_count
+    redirect: /athena/admin/risk/{page}/{category}/distribution/{type}/activity/member_count
+    method: Get
+  - path: /v1/athena/admin/risk/{page}/{category}/self/distribution/{type}
+    redirect: /athena/admin/risk/{page}/{category}/self/distribution/{type}/
+    method: Get
+  - path: /v1/athena/admin/risk/transaction_member/withdraw_member/profit/detail
+    redirect: /athena/admin/risk/transaction_member/withdraw_member/profit/detail
+    method: Get

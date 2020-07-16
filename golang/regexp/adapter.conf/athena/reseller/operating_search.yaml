@@ -1,0 +1,11 @@
+servive: athena
+api_level: agent
+apis:
+    # 有效會員
+  - path: /v1/reseller/reports/effectivemember
+    redirect: /v1/athena/reseller/reports/effectivemember
+    method: Get
+    # 注單查詢
+  - path: /reseller/order
+    redirect: /athena/reseller/order
+    method: Get

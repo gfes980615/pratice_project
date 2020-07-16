@@ -1,0 +1,22 @@
+servive: athena
+api_level: user
+apis:
+    # 下注分析
+  - path: /admin/reports/betanalysis
+    redirect: /athena/admin/reports/betanalysis
+    method: Get
+  - path: /admin/reports/betanalysisdetail
+    redirect: /athena/admin/reports/betanalysisdetail
+    method: Get
+    # 出入款統計
+  - path: /admin/reporting/revenue
+    redirect: /athena/admin/reporting/revenue
+    method: Get
+    # 優惠統計
+  - path: /admin/reports/memberdiscountanalysis
+    redirect: /athena/admin/reports/memberdiscountanalysis
+    method: Get
+    # 會員管理-輸贏監控
+  - path: /v1/reports/winlost
+    redirect: /v1/athena/reports/winlost
+    method: Get

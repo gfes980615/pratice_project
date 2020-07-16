@@ -1,0 +1,16 @@
+service: athena
+api_level: anonymous
+apis:
+    # [sync] 同步分析表ＡＰＩ analysis table
+  - path: /admin/reports/analysistable/{sync_code}/dailyautosync
+    redirect: /athena/admin/reports/analysistable/{sync_code}/dailyautosync
+    method: Post
+  - path: /admin/reports/analysistable/{analysis_table}/status
+    redirect: /athena/admin/reports/analysistable/{analysis_table}/status
+    method: Get
+    # db es compare
+  - path: /admin/reports/dbescompare
+    redirect: /athena/admin/reports/dbescompare
+    method: Get
+
+  

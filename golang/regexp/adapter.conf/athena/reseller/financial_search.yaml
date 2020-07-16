@@ -1,0 +1,32 @@
+servive: athena
+api_level: agent
+apis:
+    # [order] general report 一般報表
+  - path: /v1/reseller/reports/generalreport
+    redirect: /v1/athena/reseller/reports/generalreport
+    method: Get
+  - path: /v1/reseller/reports/generalreport/total
+    redirect: /v1/athena/reseller/reports/generalreport/total
+    method: Get
+  - path: /v1/reseller/reports/generalreport/{channelcode}
+    redirect: /v1/athena/reseller/reports/generalreport/{channelcode}
+    method: Get
+  - path: /v1/reseller/reports/generalreport/total/trend
+    redirect: /v1/athena/reseller/reports/generalreport/total/trend
+    method: Get
+  - path: /v1/reseller/reports/generalreport/{channelcode}/trend
+    redirect: /v1/athena/reseller/reports/generalreport/{channelcode}/trend
+    method: Get
+    # 每日報表
+  - path: /v1/reseller/reports/dailyreporting
+    redirect: /v1/athena/reseller/reports/dailyreporting
+    method: Get
+  - path: /v1/reseller/reports/dailyreporting/deposit
+    redirect: /v1/athena/reseller/reports/dailyreporting/deposit
+    method: Get
+  - path: /v1/reseller/reports/dailyreporting/firstdeposit
+    redirect: /v1/athena/reseller/reports/dailyreporting/firstdeposit
+    method: Get
+  - path: /v1/reseller/reports/dailyreporting/withdraw
+    redirect: /v1/athena/reseller/reports/dailyreporting/withdraw
+    method: Get
