@@ -1,0 +1,6 @@
+servive: athena
+api_level: agent
+apis:
+  - path: /reseller/wallethistory
+    redirect: /athena/reseller/wallethistory
+    method: Get

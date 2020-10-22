@@ -1,6 +1,6 @@
 app.conf
 settings.json
-
+.idea
 *.exe
 *.pyc
 *.spec

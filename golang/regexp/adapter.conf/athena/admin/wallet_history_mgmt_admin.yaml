@@ -1,0 +1,9 @@
+servive: athena
+api_level: user
+apis:
+  - path: /admin/wallethistory
+    redirect: /athena/admin/wallethistory
+    method: Get
+  - path: /admin/wallethistory/daily
+    redirect: /athena/admin/wallethistory/daily
+    method: Get
