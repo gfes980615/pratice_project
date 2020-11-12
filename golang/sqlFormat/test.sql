@@ -27,7 +27,7 @@ FROM(
         level,
         view_member_agents
     WHERE (({choose} = 'added'
-            AND (IFNULL({start_time},-99)=-99 OR deposit.added_time >= {start_time})
+            AND (ifnull({start_time},-99)=-99 OR deposit.added_time >= {start_time})
             AND (IFNULL({end_time},-99)=-99 OR deposit.added_time < {end_time}))
         OR ({choose} = 'accept'
             AND (IFNULL({start_time},-99)=-99 OR deposit.accept_time >= {start_time})
