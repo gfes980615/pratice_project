@@ -36,7 +36,7 @@ var (
 )
 
 func main() {
-	rootFolder := "deposit"
+	rootFolder := "test"
 	folders, err := ioutil.ReadDir(rootFolder)
 	if err != nil {
 		fmt.Println(err)
@@ -108,18 +108,18 @@ func sqlFormat(originSQL string) string {
 				sql += strings.ToUpper(word) + " "
 				continue
 			}
-			// COALESCE(SUM(tmp.transfer_amount),
-			match, _ := regexp.MatchString("([a-z_]+)\\(([a-z_]+)\\(([a-z_]+)\\.([a-z_]+)\\),", word)
+			// COALESCE(SUM(tmp.transfer_amount),0)
+			match, _ := regexp.MatchString("([a-zA-Z_]+)\\(([a-zA-Z_]+)\\(([a-zA-Z_]+)\\.([a-zA-Z_]+)\\),(.*)", word)
 			if match {
-				r, _ := regexp.Compile("([a-z_]+)\\(([a-z_]+)\\(([a-z_]+)\\.([a-z_]+)\\),")
+				r, _ := regexp.Compile("([a-zA-Z_]+)\\(([a-zA-Z_]+)\\(([a-zA-Z_]+)\\.([a-zA-Z_]+)\\),(.*)")
 				matches := r.FindStringSubmatch(word)
 				if specialWordMap[strings.ToLower(matches[1])] {
 					matches[1] = strings.ToUpper(matches[1])
 				}
 				if specialWordMap[strings.ToLower(matches[2])] {
-					matches[1] = strings.ToUpper(matches[2])
+					matches[2] = strings.ToUpper(matches[2])
 				}
-				sql += fmt.Sprintf("%s(%s(`%s`.`%s`), ", matches[1], matches[2], matches[3], matches[4])
+				sql += fmt.Sprintf("%s(%s(`%s`.`%s`),%s ", matches[1], matches[2], matches[3], matches[4], matches[5])
 				continue
 			}
 
@@ -175,7 +175,7 @@ func sqlFormat(originSQL string) string {
 			if match {
 				r, _ := regexp.Compile("([a-z_]+),")
 				matches := r.FindStringSubmatch(word)
-				sql += fmt.Sprintf("`%s`,", matches[1])
+				sql += fmt.Sprintf("`%s`, ", matches[1])
 				continue
 			}
 			// action_code

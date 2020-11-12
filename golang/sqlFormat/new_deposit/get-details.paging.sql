@@ -1,4 +1,4 @@
-SELECT COUNT(1) AS `total`,COALESCE(SUM(`tmp`.`transfer_amount)`, 0)  AS `amount` 
+SELECT COUNT(1) AS `total`,COALESCE(SUM(`tmp`.`transfer_amount)`, 0) AS `amount` 
 FROM( 
     SELECT `level`.`name` AS `level`,
         `deposit`.`id` AS `order_id`,
