@@ -6,8 +6,100 @@ import (
 	"os"
 	"regexp"
 	"strings"
-	"unicode"
 )
+
+var (
+	sqlFolderMap = make(map[string]string)
+)
+
+func main() {
+	//rootFolder := "test"
+	//folders, err := ioutil.ReadDir(rootFolder)
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+	//
+	//filePath := GetAllFileInFolder(rootFolder, folders)
+	//createNewFolder(rootFolder, folders)
+	//initFolderMap(filePath)
+	//for _, file := range filePath {
+	//	createFormatSQL(file)
+	//}
+
+	//getSQLParameter()
+	getParameter()
+}
+
+func getParameter() map[string]string {
+	parameter := readFileToString("parameter.txt")
+	parameters := strings.Split(parameter, "\n")
+	parameterMap := make(map[string]string)
+	fmt.Println(parameters)
+	fmt.Println(len(parameters))
+
+	for _, p := range parameters {
+		ps := strings.Split(p, ":")
+		parameterMap[ps[0]] = ps[1]
+	}
+	fmt.Println(parameterMap)
+
+	return parameterMap
+}
+
+func getSQLParameter() {
+	file := "new_test/test.sql"
+	sql := readFileToString(file)
+	r, _ := regexp.Compile("\\{([a-z_]+)}")
+	matches := r.FindAllStringSubmatch(sql, -1)
+	parameterFileContent := ""
+	parameterMap := make(map[string]bool)
+	for _, match := range matches {
+		if !parameterMap[match[0]] {
+			parameterFileContent += fmt.Sprintf("%s:\n", match[0])
+			parameterMap[match[0]] = true
+		}
+	}
+	writeToFile(parameterFileContent, "parameter.txt")
+}
+
+func initFolderMap(filePath []string) {
+	for _, file := range filePath {
+		fmt.Println(file)
+		sqlFolderMap[file] = "new_" + file
+	}
+}
+
+func createFormatSQL(file string) {
+	buf, err := ioutil.ReadFile(file)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	originSQL := string(buf)
+	sql := sqlFormat(originSQL)
+	if err := copyToNewFile(file, sql); err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Printf("create new %s sql \n", file)
+}
+
+func copyToNewFile(file, sql string) error {
+	sqlFile := []byte(sql)
+
+	f, err := os.Create(sqlFolderMap[file])
+	defer f.Close()
+	if err != nil {
+		return err
+	}
+	_, err = f.Write(sqlFile)
+	if err != nil {
+		return err
+	}
+	return nil
+}
 
 var (
 	specialWordMap = map[string]bool{
@@ -31,68 +123,7 @@ var (
 		"all":         true,
 		"in":          true,
 	}
-
-	sqlFolderMap = make(map[string]string)
 )
-
-func main() {
-	rootFolder := "test"
-	folders, err := ioutil.ReadDir(rootFolder)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	filePath := getAllFileInFolder(rootFolder, folders)
-	initFolderMap(filePath)
-	for _, file := range filePath {
-		createFormatSQL(file)
-	}
-}
-
-func initFolderMap(filePath []string) {
-	for _, file := range filePath {
-		fmt.Println(file)
-		sqlFolderMap[file] = "new_" + file
-	}
-}
-
-func getAllFileInFolder(rootFolder string, folders []os.FileInfo) []string {
-	paths := []string{}
-	newFolderRoot := "new_" + rootFolder
-	os.MkdirAll(newFolderRoot, os.ModePerm)
-	fn := func(newRootFolder, rootFolder string, folders []os.FileInfo) {}
-	fn = func(newRootFolder, rootFolder string, folders []os.FileInfo) {
-		for _, folder := range folders {
-			if folder.IsDir() {
-				subFolder, _ := ioutil.ReadDir(rootFolder + "/" + folder.Name())
-				os.MkdirAll(newRootFolder+"/"+folder.Name(), os.ModePerm)
-				fn(newRootFolder+"/"+folder.Name(), rootFolder+"/"+folder.Name(), subFolder)
-			} else {
-				paths = append(paths, rootFolder+"/"+folder.Name())
-			}
-		}
-	}
-	fn(newFolderRoot, rootFolder, folders)
-
-	return paths
-}
-
-func createFormatSQL(file string) {
-	buf, err := ioutil.ReadFile(file)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	originSQL := string(buf)
-	sql := sqlFormat(originSQL)
-	if err := writeTofile(file, sql); err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	fmt.Printf("create new %s sql \n", file)
-}
 
 func sqlFormat(originSQL string) string {
 	sqlLineString := strings.Split(originSQL, "\r\n")
@@ -147,6 +178,15 @@ func sqlFormat(originSQL string) string {
 				sql += fmt.Sprintf("%s(`%s`.`%s` ", matches[1], matches[2], matches[3])
 				continue
 			}
+			// view_member_agent.share_login,
+			// 主要解析 '.' ',' 之間的英文
+			match, _ = regexp.MatchString("([a-z_]+)\\.([a-z_]+),", word)
+			if match {
+				r, _ := regexp.Compile("([a-z_]+)\\.([a-z_]+),")
+				matches := r.FindStringSubmatch(word)
+				sql += fmt.Sprintf("`%s`.`%s`, ", matches[1], matches[2])
+				continue
+			}
 			// view_member_agent.share_login
 			// 主要解析 '.' 兩側的英文
 			match, _ = regexp.MatchString("([a-z_]+)\\.([a-z_]+)", word)
@@ -196,10 +236,27 @@ func sqlFormat(originSQL string) string {
 	return sql
 }
 
-func writeTofile(file, sql string) error {
-	sqlFile := []byte(sql)
+func checkFormat(word string) bool {
+	match, _ := regexp.MatchString("`(.*)`", word)
+	if match {
+		return true
+	}
+	return false
+}
 
-	f, err := os.Create(sqlFolderMap[file])
+func readFileToString(file string) string {
+	buf, err := ioutil.ReadFile(file)
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+	return string(buf)
+}
+
+func writeToFile(value, fileName string) error {
+	sqlFile := []byte(value)
+
+	f, err := os.Create(fileName)
 	defer f.Close()
 	if err != nil {
 		return err
@@ -211,59 +268,38 @@ func writeTofile(file, sql string) error {
 	return nil
 }
 
-func getNewFileName(file string) string {
-	f := strings.Split(file, ".sql")
-	return fmt.Sprintf("%s_new.sql", f[0])
-}
-
-func checkFormat(word string) bool {
-	match, _ := regexp.MatchString("`(.*)`", word)
-	if match {
-		return true
-	}
-	return false
-}
-
-func handler1(sqlLineString []string) string {
-	newSQL := ""
-	for _, sqlLine := range sqlLineString {
-		lineWord := strings.Split(sqlLine, " ")
-		for index, v := range lineWord {
-			if strings.ToLower(v) == "select" {
-				newSQL += v + "\n\t"
-			} else if !IsEnglishWord(v) {
-				if hasComma(v) {
-					newSQL += "`" + strings.Split(v, ",")[0] + "`" + ",\n\t"
-				} else {
-					newSQL += v + " "
-				}
-			} else if specialWordMap[strings.ToLower(v)] {
-				newSQL += strings.ToUpper(v) + " "
-			} else if len(v) == 0 {
-				newSQL += " "
+func GetAllFileInFolder(rootFolder string, folders []os.FileInfo) []string {
+	paths := []string{}
+	fn := func(rootFolder string, folders []os.FileInfo) {}
+	fn = func(rootFolder string, folders []os.FileInfo) {
+		for _, folder := range folders {
+			file := rootFolder + "/" + folder.Name()
+			if folder.IsDir() {
+				subFolder, _ := ioutil.ReadDir(file)
+				fn(file, subFolder)
 			} else {
-				newSQL += "`" + v + "`" + " "
-			}
-			if index == len(lineWord)-1 {
-				newSQL += "\n"
+				paths = append(paths, file)
 			}
 		}
-
 	}
-	return newSQL
+	fn(rootFolder, folders)
+
+	return paths
 }
 
-func IsEnglishWord(word string) bool {
-	for _, w := range word {
-		if !unicode.IsLetter(w) {
-			return false
+func createNewFolder(rootFolder string, folders []os.FileInfo) {
+	newFolderRoot := "new_" + rootFolder
+	os.MkdirAll(newFolderRoot, os.ModePerm)
+	fn := func(rootFolder string, folders []os.FileInfo) {}
+	fn = func(rootFolder string, folders []os.FileInfo) {
+		for _, folder := range folders {
+			file := newFolderRoot + "/" + folder.Name()
+			if folder.IsDir() {
+				subFolder, _ := ioutil.ReadDir(file)
+				os.MkdirAll(file, os.ModePerm)
+				fn(file, subFolder)
+			}
 		}
 	}
-	return true
-}
-func hasComma(word string) bool {
-	if word[len(word)-1] == ',' {
-		return true
-	}
-	return false
+	fn(rootFolder, folders)
 }
