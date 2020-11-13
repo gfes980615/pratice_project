@@ -28,7 +28,63 @@ func main() {
 	//}
 
 	//getSQLParameter()
-	getParameter()
+	CreateNewFolder("test_", "sql")
+	fmt.Println(len(getAllFile("sql")))
+
+}
+
+func getAllFile(rootFolder string) []string {
+	paths := []string{}
+	folders, err := ioutil.ReadDir(rootFolder)
+	if err != nil {
+		return nil
+	}
+	for _, f := range folders {
+		subFolder := rootFolder + "/" + f.Name()
+		if f.IsDir() {
+			paths = append(paths, getAllFile(subFolder)...)
+		} else {
+			paths = append(paths, subFolder)
+		}
+	}
+	return paths
+}
+
+//func GetAllFileInFolder(rootFolder string, folders []os.FileInfo) []string {
+//	paths := []string{}
+//	fn := func(rootFolder string, folders []os.FileInfo) []string { return []string{} }
+//	fn = func(rootFolder string, folders []os.FileInfo) []string {
+//		tmpPath := []string{}
+//		for _, folder := range folders {
+//			file := rootFolder + "/" + folder.Name()
+//			if folder.IsDir() {
+//				subFolder, _ := ioutil.ReadDir(file)
+//				fn(file, subFolder)
+//			} else {
+//				tmpPath = append(tmpPath, file)
+//			}
+//		}
+//	}
+//
+//	paths = append(paths, fn(rootFolder, folders)...)
+//
+//	return paths
+//}
+
+func CreateNewFolder(mean, rootFolder string) error {
+	folders, err := ioutil.ReadDir(rootFolder)
+	if err != nil {
+		return err
+	}
+	//rootFolder = mean + rootFolder
+	for _, f := range folders {
+		subFolder := rootFolder + "/" + f.Name()
+		if f.IsDir() {
+			os.MkdirAll(mean+subFolder, os.ModePerm)
+			CreateNewFolder(mean, subFolder)
+		}
+	}
+	return nil
 }
 
 func getParameter() map[string]string {
@@ -266,25 +322,6 @@ func writeToFile(value, fileName string) error {
 		return err
 	}
 	return nil
-}
-
-func GetAllFileInFolder(rootFolder string, folders []os.FileInfo) []string {
-	paths := []string{}
-	fn := func(rootFolder string, folders []os.FileInfo) {}
-	fn = func(rootFolder string, folders []os.FileInfo) {
-		for _, folder := range folders {
-			file := rootFolder + "/" + folder.Name()
-			if folder.IsDir() {
-				subFolder, _ := ioutil.ReadDir(file)
-				fn(file, subFolder)
-			} else {
-				paths = append(paths, file)
-			}
-		}
-	}
-	fn(rootFolder, folders)
-
-	return paths
 }
 
 func createNewFolder(rootFolder string, folders []os.FileInfo) {
