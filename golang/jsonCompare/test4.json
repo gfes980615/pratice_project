@@ -1,0 +1,32 @@
+{
+  "data": {
+    "2020-11-12": [
+      {
+        "member_login": "simonbot004",
+        "channel_code": "hb",
+        "product_code": "hbnn",
+        "point": "13592",
+        "total": "791551",
+        "payout": "792233.05"
+      },
+      {
+        "member_login": "vinsen002",
+        "channel_code": "kk_qipai",
+        "product_code": "3244",
+        "point": "30.66",
+        "total": "30.66",
+        "payout": "0"
+      },
+      {
+        "member_login": "apptest08",
+        "channel_code": "sb_sportbooks",
+        "product_code": "9",
+        "point": "6.71",
+        "total": "6.71",
+        "payout": "0"
+      }
+    ]
+  },
+  "err_msg": "",
+  "err_code": ""
+}

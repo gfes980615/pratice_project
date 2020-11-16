@@ -1,0 +1,26 @@
+[
+    {
+      "member_login": "cmtest001",
+      "channel_code": "hb",
+      "product_code": "hbnn",
+      "point": "0",
+      "total": "9",
+      "payout": "17.55"
+    },
+    {
+      "member_login": "apptest01",
+      "channel_code": "kk_qipai",
+      "product_code": "3244",
+      "point": "26.2",
+      "total": "26.2",
+      "payout": "0"
+    },
+    {
+      "member_login": "test111",
+      "channel_code": "mg_game",
+      "product_code": "963",
+      "point": "20.59",
+      "total": "20.59",
+      "payout": "0"
+    }
+]

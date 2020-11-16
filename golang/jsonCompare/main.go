@@ -8,50 +8,83 @@ import (
 )
 
 func main() {
-	fileOneMap := getFileDataToMap("test1.json")
-	fileTwoMap := getFileDataToMap("test2.json")
-
-	count := 0
-	for key, _ := range fileOneMap {
-		if fileTwoMap[key] {
-			count++
-		} else {
-
-		}
-	}
-
-	if len(fileOneMap) == len(fileTwoMap) && count == len(fileOneMap) && count == len(fileTwoMap) {
-		fmt.Println("equally")
-		return
-	}
+	getMapKeys2("test3.json")
+	//keys := getMapKeys("test1.json")
+	//fileOneMap := getFileDataToMap("test1.json", keys)
+	//fileTwoMap := getFileDataToMap("test2.json", keys)
+	//
+	//count := 0
+	//for key, _ := range fileOneMap {
+	//	if fileTwoMap[key] {
+	//		count++
+	//	}
+	//}
+	//
+	//if len(fileOneMap) == len(fileTwoMap) && count == len(fileOneMap) && count == len(fileTwoMap) {
+	//	fmt.Println("equally")
+	//	return
+	//}
 }
 
-func getFileDataToMap(file string) map[string]bool {
+func getFileDataToMap(file string, keys []string) map[string]bool {
 	buf, _ := ioutil.ReadFile(file)
-	fileResult := []OrderSettlement{}
+	fileResult := []interface{}{}
 	json.Unmarshal(buf, &fileResult)
 
 	resultMap := make(map[string]bool)
-
 	for _, result := range fileResult {
 		v := reflect.ValueOf(result)
 		if v.Kind() == reflect.Ptr {
 			v = v.Elem()
 		}
 		key := ""
-		for i := 0; i < v.NumField(); i++ {
-			key += fmt.Sprintf("%v/", v.Field(i).Interface())
+		for _, k := range keys {
+			key += fmt.Sprintf("%v/", v.MapIndex(reflect.ValueOf(k)))
 		}
 		resultMap[key] = true
 	}
+
 	return resultMap
 }
 
-type OrderSettlement struct {
-	MemberLogin interface{} `json:"member_login"`
-	ChannelCode interface{} `json:"channel_code"`
-	ProductCode interface{} `json:"product_code"`
-	Point       interface{} `json:"point"`
-	Total       interface{} `json:"total"`
-	Payout      interface{} `json:"payout"`
+// 為了固定順序
+func getMapKeys(file string) []string {
+	buf, _ := ioutil.ReadFile(file)
+	fileResult := []interface{}{}
+	err := json.Unmarshal(buf, &fileResult)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+
+	v := reflect.ValueOf(fileResult[0])
+	if v.Kind() == reflect.Ptr {
+		v = v.Elem()
+	}
+	result := []string{}
+	for _, value := range v.MapKeys() {
+		result = append(result, value.String())
+	}
+	return result
+}
+
+func getMapKeys2(file string) {
+	buf, _ := ioutil.ReadFile(file)
+	var fileResult interface{}
+	err := json.Unmarshal(buf, &fileResult)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(fileResult)
+	v := reflect.ValueOf(fileResult)
+	if v.Kind() == reflect.Ptr {
+		v = v.Elem()
+	}
+	result := []string{}
+	if v.Kind() == reflect.Map {
+		
+	}
+	for _, value := range v.MapKeys() {
+		result = append(result, value.String())
+	}
 }

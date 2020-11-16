@@ -1,5 +1,13 @@
 [
     {
+      "member_login": "vinsen002",
+      "channel_code": "bbin_video",
+      "product_code": "1344",
+      "point": "10.19",
+      "total": "10.19",
+      "payout": "0"
+    },
+    {
       "member_login": "cmtest001",
       "channel_code": "hb",
       "product_code": "hbnn",
