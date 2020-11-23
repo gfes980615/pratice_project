@@ -10,3 +10,4 @@ settings.json
 __init__.py
 
 sql
+golang/file/athena
