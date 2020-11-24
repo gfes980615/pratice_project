@@ -11,28 +11,36 @@ import (
 
 func main() {
 	filePaths := getAllFileInFolder("test")
-	goFileArray := []string{}
-	sqlFileArray := []string{}
+	goFileMap := make(map[string][]ChineseRow)
+	sqlFileMap := make(map[string][]ChineseRow)
 	for _, fileName := range filePaths {
 		// 檢查是否式go檔或sql檔
 		if extension, check := checkFileExtension(fileName); check {
-			if file := getChineseFileName(fileName); file != "" {
+			if file, rows := getChineseFileName(fileName); len(rows) > 0 {
 				switch extension {
 				case "go":
-					goFileArray = append(goFileArray, file)
+					goFileMap[file] = rows
 				case "sql":
-					sqlFileArray = append(sqlFileArray, file)
+					sqlFileMap[file] = rows
 				}
 			}
 		}
 		break
 	}
-	//createFileByExtension(goFileArray, "athenaGo.txt")
-	//createFileByExtension(sqlFileArray, "athenaSQL.txt")
+	createFileByExtension(goFileMap, "athenaGo.txt")
+	createFileByExtension(sqlFileMap, "athenaSQL.txt")
 }
 
-func createFileByExtension(files []string, fileName string) {
-	WriteToFile(strings.Join(files, "\n"), fileName)
+func createFileByExtension(files map[string][]ChineseRow, writeToFileName string) {
+	resetContent := []string{}
+	for file, rows := range files {
+		str := fmt.Sprintf("file: %s\n", file)
+		for _, row := range rows {
+			str += fmt.Sprintf("%d\t%s\n", row.row, row.chinese)
+		}
+		resetContent = append(resetContent, str)
+	}
+	WriteToFile(strings.Join(resetContent, "\n--------------------------------------------------\n"), writeToFileName)
 }
 
 func checkFileExtension(fileName string) (string, bool) {
@@ -45,28 +53,48 @@ func checkFileExtension(fileName string) (string, bool) {
 	return e[2], r
 }
 
-func getChineseFileName(fileName string) string {
+type ChineseRow struct {
+	row     int
+	chinese string
+}
+
+func getChineseFileName(fileName string) (string, []ChineseRow) {
 	content, err := readFile(fileName)
 	if err != nil {
 		fmt.Println(err)
-		return ""
+		return "", []ChineseRow{}
 	}
-	lines := strings.Split(content, "\n\t")
+	lines := strings.Split(content, "\n")
+	chineseRows := []ChineseRow{}
 	for index, line := range lines {
-		fmt.Println(index, line)
-		//r := regexp.MustCompile("(.*)(\n)")
-		//fmt.Println(r.FindStringSubmatch(line))
 		// 排除註解
-		//subLine := strings.Split(line, "//")
-		//if len(subLine) > 1 {
-		//	continue
-		//}
-		//// 檢查有沒有中文
-		//if checkChinese(line) {
-		//
-		//}
+		subLine := strings.Split(line, "//")
+		if len(subLine) == 2 {
+			tmp := getChinese(line, index+1)
+			if len(tmp.chinese) > 0 {
+				chineseRows = append(chineseRows, tmp)
+			}
+			continue
+		}
+		tmp := getChinese(line, index+1)
+		if len(tmp.chinese) > 0 {
+			chineseRows = append(chineseRows, tmp)
+		}
 	}
-	return ""
+	return fileName, chineseRows
+}
+
+func getChinese(str string, row int) ChineseRow {
+	chinese := ChineseRow{
+		row:     row,
+		chinese: "",
+	}
+	for _, r := range str {
+		if unicode.Is(unicode.Han, r) {
+			chinese.chinese += string(r)
+		}
+	}
+	return chinese
 }
 
 func getAllFileInFolder(rootFolder string) []string {
